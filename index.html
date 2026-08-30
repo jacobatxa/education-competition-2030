@@ -55,6 +55,19 @@
   .stat .n.alert { color:var(--red); }
   .card .c-foot { font-size:16.5px; color:var(--ink-2); line-height:1.5; border-top:1px dashed var(--line); padding-top:12px; margin-top:auto; }
 
+  /* 一句话总结条 */
+  .summary { margin-top:26px; border-radius:18px; padding:24px 40px;
+    background:linear-gradient(135deg,#1d2a45,#2f4f73);
+    color:#fff; display:flex; align-items:center; gap:36px; box-shadow:var(--shadow); position:relative; overflow:hidden; }
+  .summary::before { content:""; position:absolute; top:0; bottom:0; left:0; width:6px; background:var(--gold); }
+  .summary .s-lab { font-size:19px; letter-spacing:.18em; color:#8ec5ff; font-weight:800; white-space:nowrap; display:flex; flex-direction:column; }
+  .summary .s-lab small { font-size:13px; letter-spacing:.1em; color:#5d7fa8; margin-top:2px; }
+  .summary .s-txt { font-size:31px; font-weight:800; line-height:1.45; color:#fff; flex:1; }
+  .summary .s-txt b.dup { color:#ffd27a; }
+  .summary .s-txt b.chg { color:#7fd8c4; }
+  .summary .s-arrow { font-size:42px; color:var(--gold); font-weight:800; white-space:nowrap; }
+  .summary .s-out { font-size:34px; font-weight:800; color:#ffd27a; white-space:nowrap; }
+
   /* ---- Slide 2 Game designer ---- */
   .thesis { justify-content:center; align-items:center; padding-top:40px; }
   .thesis .badge { font-size:21px; letter-spacing:.26em; color:var(--coral); font-weight:800; margin-bottom:30px; text-align:center; }
@@ -167,6 +180,13 @@
         <div class="stat"><span class="n alert">17.9%</span><span class="u">青年失业率</span></div>
         <div class="c-foot">总量净增，但技能迭代快，竞争从"有没有学历"转向"能否持续适配变化"。</div>
       </div>
+    </div>
+
+    <div class="summary">
+      <div class="s-lab">一句话看懂<small>THE BIG PICTURE</small></div>
+      <div class="s-txt">所有家庭都在抢同一批东西——<b class="dup">好学历 · 好简历 · 好岗位</b>，而它们正在贬值；挤进热门赛道越来越难，创造新价值空间却越来越大。</div>
+      <div class="s-arrow">→</div>
+      <div class="s-out">不抢存量<br/>创造增量</div>
     </div>
 
     <div class="page-no">1 / 3</div>
