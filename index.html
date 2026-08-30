@@ -110,7 +110,7 @@
   /* ---- Slide 3 · 世界之大 · 照片墙 ---- */
   .world { padding:0; background:#0c0f14; }
   .mosaic { width:100%; height:100%; display:grid;
-    grid-template-columns:repeat(16,1fr);
+    grid-template-columns:repeat(12,1fr);
     grid-template-rows:repeat(11,1fr);
     grid-auto-flow:dense; gap:3px; padding:3px; }
   .mosaic .tile { position:relative; overflow:hidden; border-radius:4px; }
@@ -118,19 +118,16 @@
   .mosaic .tile::after { content:""; position:absolute; inset:0;
     background:linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.5)); pointer-events:none; }
   .tile .pt { position:absolute; left:10px; bottom:8px; z-index:2; color:rgba(255,255,255,.9); font-size:14px; font-weight:700; letter-spacing:.08em; text-shadow:0 1px 4px rgba(0,0,0,.6); }
-  /* 尺寸分配 — 总跨度16(列)×11(行)=176格，恰好填满 */
-  .t-yellowstone { grid-column:span 7; grid-row:span 6; }
-  .t-grandcanyon { grid-column:span 7; grid-row:span 6; }
-  .t-tokyo { grid-column:span 2; grid-row:span 6; }
-  .t-everest { grid-column:span 8; grid-row:span 3; }
-  .t-aurora { grid-column:span 4; grid-row:span 3; }
-  .t-amazon { grid-column:span 4; grid-row:span 3; }
-  .t-greatwall { grid-column:span 6; grid-row:span 2; }
-  .t-reef { grid-column:span 4; grid-row:span 2; }
-  .t-antarctic { grid-column:span 3; grid-row:span 2; }
-  .t-pyramids { grid-column:span 3; grid-row:span 2; }
+  /* 尺寸分配 — 5大图错落拼贴：12列grid */
+  .t-blood { grid-column:span 6; grid-row:span 6; }
+  .t-bluehole { grid-column:span 6; grid-row:span 6; }
+  .t-saharaeye { grid-column:span 6; grid-row:span 5; }
+  .t-naica { grid-column:span 4; grid-row:span 5; }
+  .t-giants { grid-column:span 2; grid-row:span 5; }
   .mosaic .tile:nth-child(1n) { transition:transform .4s ease; }
   .mosaic .tile:hover img { transform:scale(1.05); }
+  .tile .pt .zh { font-size:15px; font-weight:800; }
+  .tile .pt .en { font-size:11px; font-weight:600; opacity:.85; letter-spacing:.08em; }
 
   .caption { position:absolute; top:26px; left:34px; z-index:5; }
   .caption .t1 { font-size:19px; letter-spacing:.24em; color:#8ee0ff; font-weight:800; }
@@ -232,23 +229,18 @@
     <div class="connector"></div>
   </section>
 
-  <!-- ============ Slide 3 · 世界之大（照片墙） ============ -->
+  <!-- ============ Slide 3 · 地球罕见奇观（照片墙） ============ -->
   <section class="slide world">
     <div class="caption">
-      <div class="t1">THE WORLD IS BIG</div>
-      <div class="t2">世界，远比想象的大</div>
+      <div class="t1">THE EARTH HIDES WONDERS</div>
+      <div class="t2">这些奇观，多数人一生都难以亲见</div>
     </div>
     <div class="mosaic">
-      <div class="tile t-yellowstone"><img src="img/t_yellowstone.jpg" alt="Yellowstone"/><span class="pt">黄石 · Yellowstone</span></div>
-      <div class="tile t-grandcanyon"><img src="img/t_grandcanyon.jpg" alt="Grand Canyon"/><span class="pt">大峡谷 · Grand Canyon</span></div>
-      <div class="tile t-tokyo"><img src="img/t_tokyo.jpg" alt="Tokyo"/><span class="pt">东京 · Tokyo</span></div>
-      <div class="tile t-everest"><img src="img/t_everest.jpg" alt="Everest"/><span class="pt">珠峰 · Everest</span></div>
-      <div class="tile t-aurora"><img src="img/t_aurora.jpg" alt="Aurora"/><span class="pt">北极光 · Aurora</span></div>
-      <div class="tile t-amazon"><img src="img/t_amazon.jpg" alt="Amazon"/><span class="pt">亚马逊 · Amazon</span></div>
-      <div class="tile t-greatwall"><img src="img/t_greatwall.jpg" alt="Great Wall"/><span class="pt">长城 · Great Wall</span></div>
-      <div class="tile t-reef"><img src="img/t_reef.jpg" alt="Great Barrier Reef"/><span class="pt">大堡礁 · Great Barrier Reef</span></div>
-      <div class="tile t-antarctic"><img src="img/t_antarctic.jpg" alt="Antarctica"/><span class="pt">南极 · Antarctica</span></div>
-      <div class="tile t-pyramids"><img src="img/t_pyramids.jpg" alt="Pyramids"/><span class="pt">金字塔 · Pyramids</span></div>
+      <div class="tile t-blood"><img src="img/x_exo_bloodfalls.jpg" alt="Blood Falls"/><span class="pt"><span class="zh">血瀑布 · 南极</span><br/><span class="en">BLOOD FALLS</span></span></div>
+      <div class="tile t-bluehole"><img src="img/x_exo_bluehole.jpg" alt="Great Blue Hole"/><span class="pt"><span class="zh">大蓝洞 · 伯利兹</span><br/><span class="en">GREAT BLUE HOLE</span></span></div>
+      <div class="tile t-saharaeye"><img src="img/x_exo_saharaeye.jpg" alt="Eye of Sahara"/><span class="pt"><span class="zh">撒哈拉之眼 · 毛里塔尼亚</span><br/><span class="en">EYE OF SAHARA</span></span></div>
+      <div class="tile t-naica"><img src="img/x_exo_naica.jpg" alt="Naica Crystals"/><span class="pt"><span class="zh">奈卡水晶洞 · 墨西哥</span><br/><span class="en">NAICA CRYSTAL</span></span></div>
+      <div class="tile t-giants"><img src="img/x_exo_giants.jpg" alt="Giant's Causeway"/><span class="pt"><span class="zh">巨人堤道 · 爱尔兰</span><br/><span class="en">GIANT'S CAUSEWAY</span></span></div>
     </div>
     <div class="page-no">3 / 3</div>
     <div class="connector"></div>
