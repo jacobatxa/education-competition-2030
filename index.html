@@ -3,194 +3,170 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>中国孩子2030年代｜竞争格局速览 · 家长汇报</title>
+<title>中国孩子2030年代 · 竞争格局速览</title>
 <style>
   :root {
-    --bg: #eef4fb;           /* 清新亮底 */
-    --card: #ffffff;
-    --ink: #172033;          /* 深蓝灰文字 */
-    --ink-2: #4a5878;
-    --ink-3: #7c8aa0;
-    --line: #e3ecf5;
-    --coral: #ff6b4a;        /* 活力珊瑚 */
-    --blue: #2f9cf0;         /* 明亮天蓝 */
-    --gold: #f7b500;         /* 明黄 */
-    --mint: #2fbf8f;         /* 薄荷绿 */
-    --red: #e5484d;
-    --shadow: 0 14px 34px rgba(35,80,150,.10);
-    --font: "Segoe UI", "PingFang SC", "Microsoft YaHei", -apple-system, system-ui, sans-serif;
-    --num: "Segoe UI", "DIN Alternate", "PingFang SC", sans-serif;
+    --bg:#f6f7f9;
+    --card:#ffffff;
+    --ink:#16191f;
+    --ink-2:#4d5562;
+    --ink-3:#9aa3af;
+    --navy:#123c63;          /* 主强调 · 藏青 */
+    --navy-soft:#eef3f8;
+    --gold:#b58a46;          /* 点缀 · 金 */
+    --line:#e6e9ee;
+    --red:#b5313a;
+    --shadow:0 18px 40px rgba(20,40,70,.07);
+    --font:"Segoe UI","PingFang SC","Microsoft YaHei",-apple-system,"Helvetica Neue",sans-serif;
+    --num:"Georgia","Palatino","Segoe UI","DIN Alternate",serif;
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html,body { height:100%; background:#dbe7f3; color:var(--ink); font-family:var(--font); overflow:hidden; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;background:#e9edf2;color:var(--ink);font-family:var(--font);overflow:hidden;-webkit-font-smoothing:antialiased}
 
-  .deck { width:1920px; height:1080px; transform-origin:top left; position:relative; background:var(--bg); }
-  .slide { position:absolute; inset:0; padding:74px 88px; display:none; flex-direction:column; }
-  .slide.active { display:flex; }
-  .slide > * { position:relative; z-index:1; }
+  .deck{width:1920px;height:1080px;transform-origin:top left;position:relative;background:var(--bg)}
+  .slide{position:absolute;inset:0;padding:76px 92px;display:none;flex-direction:column}
+  .slide.active{display:flex}
+  .slide>*{position:relative;z-index:1}
 
-  .kicker { letter-spacing:.2em; font-size:21px; color:var(--coral); font-weight:800; }
-  h1.title { font-size:64px; font-weight:800; letter-spacing:-1px; line-height:1.12; margin-top:12px; color:var(--ink); }
-  h1.title .em { color:var(--blue); }
-  .page-no { position:absolute; bottom:32px; right:66px; font-size:20px; color:var(--ink-3); font-family:var(--num); }
-  .connector { position:absolute; bottom:32px; left:88px; height:3px; width:96px; background:var(--coral); border-radius:3px; }
+  .kicker{letter-spacing:.24em;font-size:19px;color:var(--gold);font-weight:600;text-transform:uppercase}
+  h1.title{font-size:58px;font-weight:650;letter-spacing:0;line-height:1.15;margin-top:14px;color:var(--ink)}
+  h1.title .em{color:var(--navy)}
+  .lead{font-size:24px;color:var(--ink-2);margin-top:20px;line-height:1.55;font-weight:400}
+  .lead b{color:var(--ink);font-weight:600}
+  .page-no{position:absolute;bottom:32px;right:72px;font-size:18px;color:var(--ink-3);letter-spacing:.1em;font-family:var(--num)}
+  .rule{position:absolute;bottom:32px;left:92px;height:2px;width:64px;background:var(--gold)}
 
-  /* ---- Slide 1 数据 ---- */
-  .lead { font-size:27px; color:var(--ink-2); margin-top:22px; line-height:1.5; }
-  .lead b { color:var(--ink); font-weight:800; }
-  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; margin-top:40px; flex:1; }
-  .card { background:var(--card); border-radius:20px; padding:28px 30px; display:flex; flex-direction:column; box-shadow:var(--shadow); position:relative; overflow:hidden; border:1px solid var(--line); }
-  .card::before { content:""; position:absolute; top:0; left:0; right:0; height:6px; }
-  .card.c1 { border-top:6px solid var(--coral); }
-  .card.c2 { border-top:6px solid var(--blue); }
-  .card.c3 { border-top:6px solid var(--mint); }
-  .card .h { font-size:23px; font-weight:800; color:var(--ink); margin-bottom:3px; }
-  .card .tag { font-size:17px; color:var(--ink-3); margin-bottom:18px; font-weight:600; }
-  .stat { display:flex; align-items:baseline; gap:10px; margin-bottom:9px; }
-  .stat .n { font-family:var(--num); font-size:49px; font-weight:800; line-height:1; }
-  .stat .u { font-size:18px; color:var(--ink-2); }
-  .c1 .stat .n { color:var(--coral); }
-  .c2 .stat .n { color:var(--blue); }
-  .c3 .stat .n { color:var(--mint); }
-  .stat .n.alert { color:var(--red); }
-  .card .c-foot { font-size:16.5px; color:var(--ink-2); line-height:1.5; border-top:1px dashed var(--line); padding-top:12px; margin-top:auto; }
+  /* ===== 首页 · 结论优先 ===== */
+  .home-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:44px;flex:1}
+  .hcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 38px;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+  .hcard:hover{transform:translateY(-3px);box-shadow:0 24px 50px rgba(20,40,70,.11)}
+  .hcard .idx{font-size:15px;color:var(--gold);letter-spacing:.18em;font-weight:600}
+  .hcard .h{font-size:26px;font-weight:650;color:var(--ink);margin-top:12px}
+  .hcard .concl{margin-top:26px;font-size:34px;font-weight:700;line-height:1.4;color:var(--navy)}
+  .hcard .concl .hl{display:block;color:var(--ink);font-size:27px;font-weight:600;margin-top:6px}
+  .hcard .nums{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px 18px;border-top:1px solid var(--line);padding-top:22px;margin-top:30px}
+  .hcard .nums .n{display:flex;align-items:baseline;gap:6px}
+  .hcard .nums .n b{font-family:var(--num);font-size:25px;font-weight:600;color:var(--ink-2);white-space:nowrap}
+  .hcard .nums .n span{font-size:15px;color:var(--ink-3)}
 
-  /* 一句话总结条 */
-  .summary { margin-top:26px; border-radius:18px; padding:24px 40px;
-    background:linear-gradient(135deg,#1d2a45,#2f4f73);
-    color:#fff; display:flex; align-items:center; gap:36px; box-shadow:var(--shadow); position:relative; overflow:hidden; }
-  .summary::before { content:""; position:absolute; top:0; bottom:0; left:0; width:6px; background:var(--gold); }
-  .summary .s-lab { font-size:19px; letter-spacing:.18em; color:#8ec5ff; font-weight:800; white-space:nowrap; display:flex; flex-direction:column; }
-  .summary .s-lab small { font-size:13px; letter-spacing:.1em; color:#5d7fa8; margin-top:2px; }
-  .summary .s-txt { font-size:31px; font-weight:800; line-height:1.45; color:#fff; flex:1; }
-  .summary .s-txt b.dup { color:#ffd27a; }
-  .summary .s-txt b.chg { color:#7fd8c4; }
-  .summary .s-arrow { font-size:42px; color:var(--gold); font-weight:800; white-space:nowrap; }
-  .summary .s-out { font-size:34px; font-weight:800; color:#ffd27a; white-space:nowrap; }
+  /* 一言总结条 */
+  .summary{margin-top:26px;border-radius:6px;padding:26px 40px;background:var(--ink);color:#fff;display:flex;align-items:center;gap:38px;box-shadow:var(--shadow)}
+  .summary .s-lab{font-size:16px;letter-spacing:.2em;color:var(--gold);font-weight:600;white-space:nowrap}
+  .summary .s-txt{font-size:26px;font-weight:400;color:#e9edf2;flex:1;line-height:1.5}
+  .summary .s-txt b{color:#fff;font-weight:650}
+  .summary .s-txt b.gold{color:var(--gold)}
+  .summary .s-out{font-size:28px;font-weight:650;color:var(--gold);white-space:nowrap;border-left:1px solid rgba(255,255,255,.18);padding-left:34px;line-height:1.5}
 
-  /* ---- Slide 2 Game designer ---- */
-  .thesis { justify-content:center; align-items:center; padding-top:40px; }
-  .thesis .badge { font-size:21px; letter-spacing:.26em; color:var(--coral); font-weight:800; margin-bottom:30px; text-align:center; }
-  .t-title { display:flex; align-items:center; justify-content:center; gap:40px; }
-  .t-title .player { font-size:72px; font-weight:800; color:var(--ink-3); text-decoration:line-through; text-decoration-thickness:5px; text-decoration-color:rgba(229,72,77,.45); }
-  .t-title .arrow { font-size:52px; color:var(--coral); font-weight:800; }
-  .t-title .designer { font-size:80px; font-weight:800; color:var(--blue); letter-spacing:-1px; }
-  .t-sub { font-size:32px; font-weight:800; color:var(--ink-2); margin:14px 0 34px; text-align:center; }
+  /* ===== 第2页 · Game designer ===== */
+  .thesis{justify-content:center;align-items:center}
+  .thesis .badge{font-size:17px;letter-spacing:.3em;color:var(--gold);font-weight:600;margin-bottom:40px}
+  .t-title{display:flex;align-items:center;justify-content:center;gap:46px}
+  .t-title .player{font-size:64px;font-weight:300;color:var(--ink-3);letter-spacing:.02em;text-decoration:line-through;text-decoration-color:rgba(181,49,58,.5);text-decoration-thickness:3px}
+  .t-title .arrow{font-size:44px;color:var(--gold);font-weight:200}
+  .t-title .designer{font-size:74px;font-weight:650;color:var(--navy);letter-spacing:-.5px}
+  .t-sub{font-size:28px;font-weight:500;color:var(--ink-2);margin:26px 0 46px;letter-spacing:.02em}
+  .t-compare{display:flex;align-items:stretch;gap:30px;width:100%;max-width:1500px}
+  .t-col{flex:1;border-radius:16px;padding:36px 44px}
+  .t-col.left{background:#f1f3f6;border:1px solid #e2e6ec}
+  .t-col.right{background:var(--card);border:1px solid var(--navy);box-shadow:var(--shadow)}
+  .t-col .col-h{font-size:22px;font-weight:600;margin-bottom:26px;letter-spacing:.04em}
+  .t-col.left .col-h{color:var(--ink-3)}
+  .t-col.right .col-h{color:var(--navy)}
+  .t-col .rows{display:flex;flex-direction:column;gap:18px}
+  .t-row{display:flex;align-items:baseline;gap:14px;font-size:24px;font-weight:400;color:var(--ink-2);line-height:1.4}
+  .t-row::before{content:"";width:10px;height:2px;background:currentColor;flex:none}
+  .t-col.left .t-row::before{background:#c6ccd5}
+  .t-col.right .t-row{color:var(--ink-2)}
+  .identity{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  .identity .pill{border-top:3px solid transparent;padding:20px 6px;text-align:center}
+  .identity .pill .big{display:block;font-size:29px;font-weight:650;color:var(--ink)}
+  .identity .pill small{display:block;font-size:12px;letter-spacing:.14em;color:var(--ink-3);margin-top:6px}
+  .pill.p1{border-color:var(--navy)}
+  .pill.p2{border-color:var(--gold)}
+  .pill.p3{border-color:var(--ink-2)}
+  .pill.p4{border-color:#7a8aa0}
+  .thesis .note{margin-top:44px;font-size:23px;color:var(--ink-2);max-width:1380px;line-height:1.7;text-align:center;font-weight:300}
+  .thesis .note b{color:var(--ink);font-weight:600}
 
-  /* 左右对比 */
-  .t-compare { display:flex; align-items:stretch; gap:34px; width:100%; max-width:1560px; }
-  .t-col { flex:1; border-radius:22px; padding:34px 44px; position:relative; }
-  .t-col.left { background:linear-gradient(180deg,#f1f4f9, #e9eef5); border:1px solid #e0e7f0; opacity:.85; }
-  .t-col.right { background:linear-gradient(180deg,#fff, #f6fbff); border:2px solid var(--blue); box-shadow:var(--shadow); }
-  .t-col .col-h { font-size:26px; font-weight:800; margin-bottom:20px; display:flex; align-items:center; gap:12px; }
-  .t-col.left .col-h { color:var(--ink-3); }
-  .t-col.right .col-h { color:var(--ink); }
-  .t-col .col-h .ic { font-size:22px; }
-  .t-col .rows { display:flex; flex-direction:column; gap:14px; }
-  .t-row { display:flex; align-items:center; gap:14px; font-size:25px; font-weight:600; line-height:1.4; }
-  .t-row .dot { width:12px; height:12px; border-radius:4px; flex:none; }
-  .t-col.left .t-row { color:var(--ink-3); }
-  .t-col.left .t-row .dot { background:#c2cdd8; }
-  .t-col.right .t-row { color:var(--ink-2); }
-  .t-col.right .t-row .dot { background:var(--blue); }
-  .t-arrow-mid { align-self:center; font-size:44px; color:var(--coral); font-weight:800; flex:none; }
+  /* ===== 第3页 · 奇观照片墙 ===== */
+  .world{padding:0;background:#0b0e13}
+  .wall{width:100%;height:100%;display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:100px;grid-auto-flow:dense;gap:3px;padding:3px;overflow:hidden}
+  .wall .tile{position:relative;overflow:hidden;background:#14181f}
+  .wall .tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+  .wall .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 58%,rgba(0,0,0,.5));pointer-events:none}
+  .wall .tile:hover img{transform:scale(1.05)}
+  .wall .tile .pt{position:absolute;left:12px;bottom:9px;z-index:2;color:#fff;font-size:13px;font-weight:500;letter-spacing:.04em;text-shadow:0 1px 6px rgba(0,0,0,.8);line-height:1.25}
+  .wall .tile .pt .en{display:block;font-size:9px;opacity:.7;letter-spacing:.12em;font-weight:400;margin-top:1px}
+  .sA{grid-column:span 2;grid-row:span 2}
+  .sB{grid-column:span 2;grid-row:span 1}
+  .sC{grid-column:span 3;grid-row:span 2}
+  .sD{grid-column:span 1;grid-row:span 2}
+  .sE{grid-column:span 3;grid-row:span 3}
+  .wcap{position:absolute;top:30px;left:42px;z-index:5}
+  .wcap .t1{font-size:15px;letter-spacing:.3em;color:#8fa3bd;font-weight:500}
+  .wcap .t2{font-size:40px;font-weight:650;color:#fff;margin-top:10px}
+  .wcap .t2 b{color:var(--gold)}
+  .world .page-no{color:rgba(255,255,255,.6)}
+  .world .rule{background:var(--gold)}
 
-  /* 身份标签 pill */
-  .identity { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:8px; }
-  .identity .pill { border-radius:14px; padding:18px 22px; font-size:27px; font-weight:800; text-align:center; line-height:1.3; box-shadow:0 6px 16px rgba(35,80,150,.12); }
-  .identity .pill small { display:block; font-size:15px; font-weight:600; opacity:.75; margin-top:4px; letter-spacing:.04em; }
-  .pill.p1 { background:var(--coral); color:#fff; }
-  .pill.p2 { background:var(--blue); color:#fff; }
-  .pill.p3 { background:var(--gold); color:#3a3000; }
-  .pill.p4 { background:var(--mint); color:#06331f; }
-
-  .thesis .note { font-size:24px; color:var(--ink-2); max-width:1400px; line-height:1.6; margin-top:38px; text-align:center; }
-  .thesis .note b { color:var(--ink); font-weight:800; }
-
-  /* ---- Slide 3 · 世界之大 · 照片墙 ---- */
-  .world { padding:0; background:#0c0f14; }
-  .mosaic { width:100%; height:100%; display:grid;
-    grid-template-columns:repeat(12,1fr);
-    grid-template-rows:repeat(11,1fr);
-    grid-auto-flow:dense; gap:3px; padding:3px; }
-  .mosaic .tile { position:relative; overflow:hidden; border-radius:4px; }
-  .mosaic .tile img { width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.001); }
-  .mosaic .tile::after { content:""; position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.5)); pointer-events:none; }
-  .tile .pt { position:absolute; left:10px; bottom:8px; z-index:2; color:rgba(255,255,255,.9); font-size:14px; font-weight:700; letter-spacing:.08em; text-shadow:0 1px 4px rgba(0,0,0,.6); }
-  /* 尺寸分配 — 5大图错落拼贴：12列grid */
-  .t-blood { grid-column:span 6; grid-row:span 6; }
-  .t-bluehole { grid-column:span 6; grid-row:span 6; }
-  .t-saharaeye { grid-column:span 6; grid-row:span 5; }
-  .t-naica { grid-column:span 4; grid-row:span 5; }
-  .t-giants { grid-column:span 2; grid-row:span 5; }
-  .mosaic .tile:nth-child(1n) { transition:transform .4s ease; }
-  .mosaic .tile:hover img { transform:scale(1.05); }
-  .tile .pt .zh { font-size:15px; font-weight:800; }
-  .tile .pt .en { font-size:11px; font-weight:600; opacity:.85; letter-spacing:.08em; }
-
-  .caption { position:absolute; top:26px; left:34px; z-index:5; }
-  .caption .t1 { font-size:19px; letter-spacing:.24em; color:#8ee0ff; font-weight:800; }
-  .caption .t2 { font-size:34px; font-weight:800; color:#fff; margin-top:6px; text-shadow:0 2px 10px rgba(0,0,0,.5); }
-
-  .world .page-no { color:rgba(255,255,255,.7); }
-  .world .connector { background:#8ee0ff; }
-
-  .progress { position:absolute; top:0; left:0; right:0; height:4px; background:rgba(0,0,0,.05); z-index:5; }
-  .progress .bar { height:100%; background:var(--coral); width:33.33%; transition:width .35s ease; }
-  .hint { position:fixed; bottom:14px; right:18px; z-index:50; font-size:13px; color:#9db3c8; font-family:var(--num); }
+  .progress{position:absolute;top:0;left:0;right:0;height:3px;background:rgba(0,0,0,.05);z-index:5}
+  .progress .bar{height:100%;background:var(--gold);width:33.33%;transition:width .35s ease}
+  .hint{position:fixed;bottom:12px;right:16px;z-index:60;font-size:12px;color:#aeb6c1;font-family:var(--num);letter-spacing:.06em}
 </style>
 </head>
 <body>
 <div class="deck" id="deck">
-
   <div class="progress"><div class="bar" id="bar"></div></div>
 
-  <!-- ============ Slide 1 · 竞争格局速览 ============ -->
+  <!-- 1 · 结论优先首页 -->
   <section class="slide active">
     <div class="kicker">家长私享汇报 · 2026</div>
     <h1 class="title">中国孩子<span class="em">2030年代</span> · 竞争格局速览</h1>
     <p class="lead">今天10–15岁的孩子，<b>升学在2030–2035</b>、进入就业市场在<b>2035–2040</b>。资源竞争不会消失，但形式在变。</p>
 
-    <div class="grid3">
-      <div class="card c1">
-        <div class="h">一 · 国内升学</div>
-        <div class="tag">优质本科仍稀缺</div>
-        <div class="stat"><span class="n">1290万</span><span class="u">高考人数</span></div>
-        <div class="stat"><span class="n alert">36.5%</span><span class="u">本科录取率</span></div>
-        <div class="stat"><span class="n">1270万</span><span class="u">高校毕业生</span></div>
-        <div class="c-foot">总量录取率在升，但优质本科与热门专业仍竞争激烈。</div>
+    <div class="home-grid">
+      <div class="hcard">
+        <div class="idx">01 · DOMESTIC</div>
+        <div class="h">国内升学</div>
+        <div class="concl">好学历正在贬值<span class="hl">挤进热门名校，越来越难</span></div>
+        <div class="nums">
+          <div class="n"><b>1290万</b><span>高考</span></div>
+          <div class="n"><b>36.5%</b><span>本科录取</span></div>
+          <div class="n"><b>1270万</b><span>毕业生</span></div>
+        </div>
       </div>
-      <div class="card c2">
-        <div class="h">二 · 国际升学</div>
-        <div class="tag">全球顶尖名额之争</div>
-        <div class="stat"><span class="n alert">1.5–3%</span><span class="u">顶级校录取率</span></div>
-        <div class="stat"><span class="n">850-900<span style="font-size:26px;">万</span></span><span class="u">2030国际生</span></div>
-        <div class="stat"><span class="n alert" style="font-size:40px;">1.5–2%</span><span class="u">中国申请人</span></div>
-        <div class="c-foot">顶尖名额极度稀缺，中国申请人竞争尤烈；真正的竞争是全球顶尖 + 多路径匹配。</div>
+      <div class="hcard">
+        <div class="idx">02 · GLOBAL</div>
+        <div class="h">国际升学</div>
+        <div class="concl">全球在抢同一批顶尖名额<span class="hl">名额稀缺，必须真实差异化</span></div>
+        <div class="nums">
+          <div class="n"><b>1.5–3%</b><span>顶校录取</span></div>
+          <div class="n"><b>850–900万</b><span>2030国际生</span></div>
+        </div>
       </div>
-      <div class="card c3">
-        <div class="h">三 · 就业技能</div>
-        <div class="tag">竞争转向能力</div>
-        <div class="stat"><span class="n">+7800万</span><span class="u">净增岗位</span></div>
-        <div class="stat"><span class="n alert">39%</span><span class="u">核心技能将变</span></div>
-        <div class="stat"><span class="n alert">17.9%</span><span class="u">青年失业率</span></div>
-        <div class="c-foot">总量净增，但技能迭代快，竞争从"有没有学历"转向"能否持续适配变化"。</div>
+      <div class="hcard">
+        <div class="idx">03 · WORK</div>
+        <div class="h">就业技能</div>
+        <div class="concl">今天会的东西，随时可能作废<span class="hl">竞争转向持续适配与创造</span></div>
+        <div class="nums">
+          <div class="n"><b>+7800万</b><span>净增岗位</span></div>
+          <div class="n"><b>39%</b><span>技能将变</span></div>
+          <div class="n"><b>59%</b><span>需再培训</span></div>
+        </div>
       </div>
     </div>
 
     <div class="summary">
-      <div class="s-lab">一句话看懂<small>THE BIG PICTURE</small></div>
-      <div class="s-txt">所有家庭都在抢同一批东西——<b class="dup">好学历 · 好简历 · 好岗位</b>，而它们正在贬值；挤进热门赛道越来越难，创造新价值空间却越来越大。</div>
-      <div class="s-arrow">→</div>
-      <div class="s-out">不抢存量<br/>创造增量</div>
+      <div class="s-lab">一句话看懂</div>
+      <div class="s-txt">所有家庭都在抢同一批东西——<b>好学历 · 好简历 · 好岗位</b>，而这些正在贬值。挤热门赛道越来越难，<b>创造新价值</b>的空间却越来越大。</div>
+      <div class="s-out">不抢存量<br>创造增量</div>
     </div>
 
     <div class="page-no">1 / 3</div>
-    <div class="connector"></div>
+    <div class="rule"></div>
   </section>
 
-  <!-- ============ Slide 2 · Game Player → Game Designer ============ -->
+  <!-- 2 · Game designer -->
   <section class="slide thesis">
     <div class="badge">核心观点</div>
     <div class="t-title">
@@ -199,93 +175,119 @@
       <span class="designer">Game Designer</span>
     </div>
     <div class="t-sub">别只当玩游戏的人，要当设计游戏的人</div>
-
     <div class="t-compare">
       <div class="t-col left">
-        <div class="col-h"><span class="ic">🎮</span> 只玩 · 跟随的人</div>
+        <div class="col-h">只玩 · 跟随的人</div>
         <div class="rows">
-          <div class="t-row"><span class="dot"></span>遵守别人写好的规则</div>
-          <div class="t-row"><span class="dot"></span>卷分数 · 卷简历 · 卷头衔</div>
-          <div class="t-row"><span class="dot"></span>迎合现有的社会需求</div>
-          <div class="t-row"><span class="dot"></span>被既有的赛道定义</div>
+          <div class="t-row">遵守别人写好的规则</div>
+          <div class="t-row">卷分数 · 卷简历 · 卷头衔</div>
+          <div class="t-row">迎合现有的社会需求</div>
+          <div class="t-row">被既有的赛道定义</div>
         </div>
       </div>
-      <div class="t-arrow-mid">→</div>
       <div class="t-col right">
-        <div class="col-h"><span class="ic">🚀</span> 创造 · 定义的人</div>
+        <div class="col-h">创造 · 定义的人</div>
         <div class="identity">
-          <div class="pill p1">规则<span>制定者</span><small>RULE MAKER</small></div>
-          <div class="pill p2">创新<span>发起者</span><small>IDEA STARTER</small></div>
-          <div class="pill p3">赛道<span>定义者</span><small>PATH SETTER</small></div>
-          <div class="pill p4">价值<span>创造者</span><small>VALUE CREATOR</small></div>
+          <div class="pill p1"><span class="big">规则制定者</span><small>RULE MAKER</small></div>
+          <div class="pill p2"><span class="big">创新发起者</span><small>IDEA STARTER</small></div>
+          <div class="pill p3"><span class="big">赛道定义者</span><small>PATH SETTER</small></div>
+          <div class="pill p4"><span class="big">价值创造者</span><small>VALUE CREATOR</small></div>
         </div>
       </div>
     </div>
-
-    <div class="note">
-      分数、简历、名校，都是别人写好的规则。真正稀缺的，是<b>能制定规则、发起创新、定义自己赛道、持续创造价值</b>的能力。
-    </div>
+    <div class="note">分数、简历、名校，都是别人写好的规则——你真正稀缺的，是<b>制定规则、发起创新、定义自己赛道、持续创造价值</b>的能力。</div>
     <div class="page-no">2 / 3</div>
-    <div class="connector"></div>
+    <div class="rule"></div>
   </section>
 
-  <!-- ============ Slide 3 · 地球罕见奇观（照片墙） ============ -->
+  <!-- 3 · 奇观照片墙（JS 填充） -->
   <section class="slide world">
-    <div class="caption">
+    <div class="wcap">
       <div class="t1">THE EARTH HIDES WONDERS</div>
-      <div class="t2">这些奇观，多数人一生都难以亲见</div>
+      <div class="t2">多数人一生<b>难以亲见</b>的奇观</div>
     </div>
-    <div class="mosaic">
-      <div class="tile t-blood"><img src="img/x_exo_bloodfalls.jpg" alt="Blood Falls"/><span class="pt"><span class="zh">血瀑布 · 南极</span><br/><span class="en">BLOOD FALLS</span></span></div>
-      <div class="tile t-bluehole"><img src="img/x_exo_bluehole.jpg" alt="Great Blue Hole"/><span class="pt"><span class="zh">大蓝洞 · 伯利兹</span><br/><span class="en">GREAT BLUE HOLE</span></span></div>
-      <div class="tile t-saharaeye"><img src="img/x_exo_saharaeye.jpg" alt="Eye of Sahara"/><span class="pt"><span class="zh">撒哈拉之眼 · 毛里塔尼亚</span><br/><span class="en">EYE OF SAHARA</span></span></div>
-      <div class="tile t-naica"><img src="img/x_exo_naica.jpg" alt="Naica Crystals"/><span class="pt"><span class="zh">奈卡水晶洞 · 墨西哥</span><br/><span class="en">NAICA CRYSTAL</span></span></div>
-      <div class="tile t-giants"><img src="img/x_exo_giants.jpg" alt="Giant's Causeway"/><span class="pt"><span class="zh">巨人堤道 · 爱尔兰</span><br/><span class="en">GIANT'S CAUSEWAY</span></span></div>
-    </div>
+    <div class="wall" id="wall"></div>
     <div class="page-no">3 / 3</div>
-    <div class="connector"></div>
+    <div class="rule"></div>
   </section>
 
 </div>
 
-<div class="hint" id="hint">← → 翻页 · F 全屏</div>
+<div class="hint">← → 翻页 · F 全屏</div>
+
+<script>
+// 第3页奇观清单（36张）
+var WONDERS = [
+  {img:"x_exo_bloodfalls.jpg", zh:"血瀑布·南极", en:"BLOOD FALLS"},
+  {img:"x_exo_bluehole.jpg",   zh:"大蓝洞·伯利兹", en:"GREAT BLUE HOLE"},
+  {img:"x_exo_saharaeye.jpg",  zh:"撒哈拉之眼·毛里塔尼亚", en:"EYE OF SAHARA"},
+  {img:"x_exo_naica.jpg",      zh:"奈卡水晶洞·墨西哥", en:"NAICA CRYSTAL"},
+  {img:"x_exo_giants.jpg",     zh:"巨人堤道·爱尔兰", en:"GIANT'S CAUSEWAY"},
+  {img:"exo_ready/salar.jpg",  zh:"天空之镜·玻利维亚", en:"SALAR DE UYUNI"},
+  {img:"exo_ready/waitomo.jpg",zh:"萤火虫洞·新西兰", en:"WAITOMO"},
+  {img:"exo_ready/pinklake.jpg",zh:"粉红湖·澳大利亚", en:"PINK LAKE"},
+  {img:"exo_ready/ijen.jpg",   zh:"蓝火·伊真火山·印尼", en:"IJEN BLUE FIRE"},
+  {img:"exo_ready/biolum.jpg", zh:"荧光海·波多黎各", en:"BIOLUMINESCENT"},
+  {img:"exo_ready/zhangye.jpg",zh:"丹霞彩虹山·中国", en:"ZHANGYE"},
+  {img:"exo_ready/antelope.jpg",zh:"羚羊谷·美国", en:"ANTELOPE CANYON"},
+  {img:"exo_ready/pamukkale.jpg",zh:"棉花堡·土耳其", en:"PAMUKKALE"},
+  {img:"exo_ready/wave.jpg",   zh:"波浪岩·美国", en:"THE WAVE"},
+  {img:"exo_ready/icecave.jpg",zh:"冰洞·冰岛", en:"ICE CAVE"},
+  {img:"exo_ready/deadvlei.jpg",zh:"死亡谷·纳米比亚", en:"DEADVLEI"},
+  {img:"exo_ready/socotra.jpg",zh:"龙血树·索科特拉", en:"DRAGON TREE"},
+  {img:"exo_ready/mudvolc.jpg",zh:"泥火山·阿塞拜疆", en:"MUD VOLCANO"},
+  {img:"exo_ready/curly.jpg",  zh:"石林·布莱斯峡谷", en:"HOODOOS"},
+  {img:"exo_ready/angel.jpg",  zh:"天使瀑布·委内瑞拉", en:"ANGEL FALLS"},
+  {img:"exo_ready/cenote.jpg", zh:"天坑·墨西哥", en:"CENOTE"},
+  {img:"exo_ready/crystal_river.jpg", zh:"彩虹河·哥伦比亚", en:"CAÑO CRISTALES"},
+  {img:"exo_ready/geyser.jpg", zh:"大棱镜·美国", en:"GRAND PRISMATIC"},
+  {img:"exo_ready/marble_church.jpg", zh:"大理石教堂·智利", en:"MARBLE CAVES"},
+  {img:"exo_ready/milford.jpg",zh:"米尔福德湾·新西兰", en:"MILFORD SOUND"},
+  {img:"exo_ready/white_desert.jpg", zh:"白沙漠·埃及", en:"WHITE DESERT"},
+  {img:"exo_ready/eystryfjall.jpg", zh:"雷尼斯岩·冰岛", en:"REYNISFJARA"},
+  {img:"exo_ready/jokulsarlon.jpg", zh:"冰河湖·冰岛", en:"JÖKULSÁRLÓN"},
+  {img:"exo_ready/neon.jpg",   zh:"喀拉喀托湖光", en:"NEON GLOW"},
+  {img:"exo_ready/bromo.jpg",  zh:"布罗莫火山·印尼", en:"BROMO"},
+  {img:"exo_ready/dune_color.jpg", zh:"红色沙丘·纳米比亚", en:"RED DUNES"},
+  {img:"exo_ready/snowdome.jpg", zh:"冰川蓝洞", en:"GLACIER CAVE"},
+  {img:"exo_ready/temple_cave.jpg", zh:"下龙湾·越南", en:"HALONG BAY"},
+  {img:"exo_ready/seljalandsfoss.jpg", zh:"瀑布水帘·冰岛", en:"FALL BEHIND"},
+  {img:"exo_ready/rosesalt.jpg", zh:"沙漠玫瑰", en:"DESERT ROSE"},
+  {img:"exo_ready/multicolorlake.jpg", zh:"多彩湖·玻利维亚", en:"COLORFUL LAKE"}
+];
+// 尺寸循环：让大图错落（12列grid，dense填充）
+var SIZES = ["sC","sA","sB","sA","sE","sA","sB","sB","sC","sB","sA","sD","sB","sB","sA","sC","sB","sB","sD","sA","sB","sB","sC","sA","sB","sB","sD","sA","sB","sB","sB","sA","sB","sB","sD","sA"];
+(function(){
+  var wall = document.getElementById('wall');
+  WONDERS.forEach(function(w,i){
+    var sz = SIZES[i % SIZES.length];
+    var t = document.createElement('div');
+    t.className = 'tile ' + sz;
+    t.innerHTML = '<img src="img/'+w.img+'" alt="'+w.zh+'" loading="lazy"><span class="pt">'+w.zh+'<span class="en">'+w.en+'</span></span>';
+    wall.appendChild(t);
+  });
+})();
+</script>
 
 <script>
 (function(){
-  const deck = document.getElementById('deck');
-  const slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
-  const bar = document.getElementById('bar');
-  const total = slides.length;
-  let cur = 0;
-
-  function scale(){
-    const s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
-    deck.style.transform = 'scale('+s+')';
-  }
-  window.addEventListener('resize', scale);
-
-  function show(i){
-    cur = Math.max(0, Math.min(total-1, i));
-    slides.forEach((sl,idx)=>sl.classList.toggle('active', idx===cur));
-    bar.style.width = ((cur+1)/total*100)+'%';
-    try{ localStorage.setItem('gev_slide', cur); }catch(e){}
-  }
-
-  document.addEventListener('keydown', e=>{
-    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); show(cur+1); }
-    else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); show(cur-1); }
-    else if(e.key==='Home'){ show(0); }
-    else if(e.key==='End'){ show(total-1); }
-    else if(e.key==='f'||e.key==='F'){
-      if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{});
-      else document.exitFullscreen().catch(()=>{});
-    }
+  var deck=document.getElementById('deck');
+  var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var bar=document.getElementById('bar');
+  var total=slides.length, cur=0;
+  function scale(){deck.style.transform='scale('+Math.min(innerWidth/1920,innerHeight/1080)+')'}
+  addEventListener('resize',scale);
+  function show(i){cur=Math.max(0,Math.min(total-1,i));slides.forEach(function(s,idx){s.classList.toggle('active',idx===cur)});bar.style.width=((cur+1)/total*100)+'%';try{localStorage.setItem('gev_slide',cur)}catch(e){}}
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(cur+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(cur-1)}
+    else if(e.key==='Home'){show(0)}
+    else if(e.key==='End'){show(total-1)}
+    else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
   });
-
-  let start=0;
-  try{ start = parseInt(localStorage.getItem('gev_slide'))||0; }catch(e){}
-  try{ const qp = new URLSearchParams(location.search).get('p'); if(qp) start = parseInt(qp)-1; }catch(e){}
-  scale(); show(start);
+  var st=0;try{st=parseInt(localStorage.getItem('gev_slide'))||0}catch(e){}
+  try{var qp=new URLSearchParams(location.search).get('p');if(qp)st=parseInt(qp)-1}catch(e){}
+  scale();show(st);
 })();
 </script>
 </body>
