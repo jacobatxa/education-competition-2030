@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>中国孩子2030｜资源·升学·就业的竞争格局 · 家长汇报</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-2: #11161d;
+    --surface: #161b22;
+    --surface-2: #1b2230;
+    --ink: #f0f3f8;
+    --ink-2: #a7b1c0;
+    --ink-3: #6b7686;
+    --line: rgba(255,255,255,.07);
+    --accent: #f0a13c;        /* 暖橙主强调 */
+    --accent-2: #38bdf8;      /* 蓝青次强调（就业/国际） */
+    --red: #f87171;           /* 压力警示 */
+    --green: #34d399;         /* 机会/中性 */
+    --font: "Segoe UI", "PingFang SC", "Microsoft YaHei", -apple-system, system-ui, sans-serif;
+    --num: "Segoe UI", "DIN Alternate", "PingFang SC", sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { height:100%; background:#07090d; color:var(--ink); font-family:var(--font); overflow:hidden; }
+
+  /* ---- 固定画布 ---- */
+  .deck { width:1920px; height:1080px; transform-origin:top left; position:relative; background:var(--bg); }
+  .slide { position:absolute; inset:0; padding:96px 112px; display:none; flex-direction:column; }
+  .slide.active { display:flex; }
+
+  /* 背景纹理：极淡网格线，提供结构不喧宾夺主 */
+  .deck::before {
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
+    background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.035) 1px, transparent 0);
+    background-size:40px 40px;
+  }
+  .slide > * { position:relative; z-index:1; }
+
+  /* 页头 */
+  .kicker { letter-spacing:.22em; font-size:26px; color:var(--accent); font-weight:600; text-transform:uppercase; }
+  h1.title { font-size:84px; font-weight:800; letter-spacing:-1px; line-height:1.08; margin-top:18px; }
+  h1.title .em { color:var(--accent); }
+  .lead { font-size:34px; color:var(--ink-2); margin-top:28px; max-width:1500px; line-height:1.5; font-weight:400; }
+  .subtitle { font-size:26px; color:var(--ink-3); margin-top:20px; }
+
+  /* 底部页码 */
+  .page-no { position:absolute; bottom:44px; right:80px; font-size:24px; color:var(--ink-3); font-family:var(--num); }
+  .connector { position:absolute; bottom:44px; left:112px; height:3px; width:120px; background:var(--accent); }
+
+  /* ---- 概览 / 封面 ---- */
+  .cover-meta { margin-top:auto; display:flex; gap:56px; align-items:flex-end; }
+  .cover-meta .blk { border-left:2px solid var(--line); padding-left:22px; }
+  .cover-meta .blk .l { font-size:22px; color:var(--ink-3); margin-bottom:8px; }
+  .cover-meta .blk .v { font-size:34px; font-weight:700; font-family:var(--num); color:var(--ink-2); }
+
+  /* ---- 仪表盘式概览 slide ---- */
+  .dash { display:grid; grid-template-columns:repeat(3,1fr); gap:36px; margin-top:56px; }
+  .dash .col { background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:36px 38px; position:relative; overflow:hidden; }
+  .dash .col::before { content:""; position:absolute; top:0; left:0; right:0; height:5px; }
+  .dash .col.c1::before { background:var(--accent); }
+  .dash .col.c2::before { background:var(--accent-2); }
+  .dash .col.c3::before { background:var(--green); }
+  .dash .col .h { font-size:26px; font-weight:700; color:var(--ink); margin-bottom:6px; }
+  .dash .col .tag { font-size:20px; color:var(--ink-3); margin-bottom:28px; }
+  .dash .stat { display:flex; align-items:baseline; gap:10px; margin-bottom:14px; }
+  .dash .stat .n { font-family:var(--num); font-size:58px; font-weight:800; line-height:1; }
+  .dash .c1 .stat .n { color:var(--accent); }
+  .dash .c2 .stat .n { color:var(--accent-2); }
+  .dash .c3 .stat .n { color:var(--green); }
+  .dash .stat .u { font-size:22px; color:var(--ink-2); }
+  .dash .foot { font-size:20px; color:var(--ink-3); line-height:1.5; border-top:1px solid var(--line); padding-top:18px; margin-top:18px; }
+
+  /* ---- 数据页骨架 ---- */
+  .head { display:flex; align-items:baseline; gap:28px; }
+  .head .sec-no { font-family:var(--num); font-size:40px; font-weight:800; color:var(--accent); opacity:.9; }
+  .head h2 { font-size:56px; font-weight:800; letter-spacing:-.5px; }
+  .head .sub-zh { font-size:24px; color:var(--ink-3); margin-left:auto; }
+
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:52px; flex:1; }
+  .grid.two { grid-template-columns:1fr 1fr; }
+  .grid.one { grid-template-columns:1fr; }
+  .banner { grid-column:1 / -1; }
+
+  /* 大数字主卡 */
+  .bigstat { background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:40px 44px; display:flex; flex-direction:column; justify-content:center; }
+  .bigstat .lab { font-size:24px; color:var(--ink-2); margin-bottom:14px; display:flex; align-items:center; gap:14px; }
+  .bigstat .lab .dot { width:10px; height:10px; border-radius:50%; background:var(--accent); flex:none; }
+  .bigstat.alt .lab .dot { background:var(--accent-2); }
+  .bigstat.alt2 .lab .dot { background:var(--green); }
+  .bigstat .num-row { display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; }
+  .bigstat .num { font-family:var(--num); font-size:116px; font-weight:800; line-height:1; }
+  .bigstat .num.small { font-size:88px; }
+  .bigstat .unit { font-size:34px; color:var(--ink-2); font-weight:600; }
+  .bigstat .note { font-size:21px; color:var(--ink-3); margin-top:16px; line-height:1.5; }
+  .bigstat.acc .num { color:var(--accent); }
+  .bigstat.ac2 .num { color:var(--accent-2); }
+  .bigstat.red .num { color:var(--red); }
+  .bigstat.grn .num { color:var(--green); }
+  .bigstat .src { margin-top:auto; font-size:17px; color:var(--ink-3); opacity:.75; padding-top:16px; }
+
+  /* 小号数字块：横向排列 */
+  .statrow { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:26px; }
+  .statbox { background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:30px 32px; }
+  .statbox .lab { font-size:21px; color:var(--ink-2); margin-bottom:16px; line-height:1.4; }
+  .statbox .nr { display:flex; align-items:baseline; gap:10px; }
+  .statbox .n { font-family:var(--num); font-size:60px; font-weight:800; line-height:1; }
+  .statbox .n.acc { color:var(--accent); }
+  .statbox .n.ac2 { color:var(--accent-2); }
+  .statbox .n.red { color:var(--red); }
+  .statbox .n.grn { color:var(--green); }
+  .statbox .u { font-size:20px; color:var(--ink-2); }
+  .statbox .foot { font-size:18px; color:var(--ink-3); margin-top:12px; line-height:1.5; }
+
+  /* 含义条 */
+  .takeaway { grid-column:1/-1; background:linear-gradient(90deg, rgba(240,161,60,.12), rgba(240,161,60,.02)); border:1px solid rgba(240,161,60,.28); border-left:6px solid var(--accent); border-radius:14px; padding:28px 40px; }
+  .takeaway .t { font-size:23px; color:var(--ink); line-height:1.55; }
+  .takeaway .t b { color:var(--accent); font-weight:700; }
+  .takeaway.blue { background:linear-gradient(90deg, rgba(56,189,248,.12), rgba(56,189,248,.02)); border-color:rgba(56,189,248,.28); border-left-color:var(--accent-2); }
+  .takeaway.blue .t b { color:var(--accent-2); }
+
+  /* 用于密集列点 */
+  .list-stat { background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:38px 44px; }
+  .list-stat h3 { font-size:28px; font-weight:700; margin-bottom:24px; display:flex; align-items:center; gap:14px; }
+  .list-stat h3 .sw { width:12px; height:12px; border-radius:3px; background:var(--accent); }
+  .list-stat h3.blue .sw { background:var(--accent-2); }
+  .list-stat .row { display:flex; align-items:baseline; gap:18px; padding:16px 0; border-bottom:1px solid var(--line); }
+  .list-stat .row:last-child { border-bottom:none; }
+  .list-stat .row .k { font-size:22px; color:var(--ink-2); flex:1; line-height:1.4; }
+  .list-stat .row .kv { font-family:var(--num); font-size:44px; font-weight:800; white-space:nowrap; }
+  .list-stat .row .kv.acc { color:var(--accent); }
+  .list-stat .row .kv.ac2 { color:var(--accent-2); }
+  .list-stat .row .kv.red { color:var(--red); }
+
+  /* ---- 结论表 ----
+  * 标题行：数字/要点用醒目字体 */
+  .concl { margin-top:56px; flex:1; }
+  .concl-tbl { width:100%; border-collapse:collapse; }
+  .concl-tbl th { text-align:left; font-size:22px; color:var(--ink-3); font-weight:600; text-transform:uppercase; letter-spacing:.08em; padding:16px 22px; border-bottom:2px solid var(--ink-3); }
+  .concl-tbl th + th, .concl-tbl td + td { border-left:1px solid var(--line); }
+  .concl-tbl td { padding:30px 22px; font-size:24px; color:var(--ink); vertical-align:top; border-bottom:1px solid var(--line); }
+  .concl-tbl td.dim { font-size:26px; font-weight:700; white-space:nowrap; }
+  .concl-tbl td.dim .pill { display:inline-block; font-size:19px; color:var(--accent); border:1px solid rgba(240,161,60,.4); padding:4px 14px; border-radius:20px; margin-top:8px; }
+  .concl-tbl td .digits { font-family:var(--num); color:var(--accent); font-weight:800; }
+  .concl-tbl td .digits.blue { color:var(--accent-2); }
+  .concl-tbl td .digits.red { color:var(--red); }
+  .concl-tbl td.insight { color:var(--ink-2); font-size:23px; line-height:1.5; }
+  .concl-tbl td.insight b { color:var(--ink); font-weight:600; }
+
+  /* ---- 尾页 ---- */
+  .end { justify-content:center; }
+  .end h2 { font-size:96px; font-weight:800; letter-spacing:-1px; line-height:1.25; }
+  .end h2 .em { color:var(--accent); }
+  .end .three { display:flex; gap:44px; margin-top:64px; }
+  .end .three .it { flex:1; background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:32px 36px; }
+  .end .three .it .num { font-family:var(--num); font-size:40px; font-weight:800; color:var(--accent); margin-bottom:14px; }
+  .end .three .it p { font-size:24px; color:var(--ink-2); line-height:1.5; }
+
+  /* 进度指示 */
+  .progress { position:absolute; top:0; left:0; right:0; height:4px; background:rgba(255,255,255,.05); z-index:5; }
+  .progress .bar { height:100%; background:var(--accent); width:14.28%; transition:width .35s ease; }
+
+  .hint { position:fixed; bottom:18px; right:22px; z-index:50; font-size:15px; color:#3d4653; font-family:var(--num); }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- ============ 进度条 ============ -->
+  <div class="progress"><div class="bar" id="bar"></div></div>
+
+  <!-- ============ 1 封面 ============ -->
+  <section class="slide active">
+    <div class="kicker">家长私享汇报 · 2026</div>
+    <h1 class="title">中国孩子2030<br /><span class="em">资源 · 升学 · 就业</span>的竞争格局</h1>
+    <p class="lead">今天10–15岁的孩子，将在<strong style="color:var(--ink);">2030–2035</strong>年真正面对大学申请，就业更晚。以下数字聚焦中长期趋势——竞争不会消失，但形式在变。</p>
+    <div class="cover-meta">
+      <div class="blk"><div class="l">数据来源</div><div class="v">教育部 · 国家统计局 · 国家数据</div></div>
+      <div class="blk"><div class="l">国际视角</div><div class="v">WEF · UNESCO · QS · 高净值家庭全球化竞争</div></div>
+      <div class="blk"><div class="l">时间窗</div><div class="v">升学 2030–2035 · 就业 2030年代</div></div>
+    </div>
+    <div class="page-no">1 / 7</div>
+    <div class="connector"></div>
+  </section>
+
+  <!-- ============ 2 三大竞争总览 ============ -->
+  <section class="slide">
+    <div class="kicker">全员总览</div>
+    <h1 class="title">三条战线 · 一个世界</h1>
+    <div class="dash">
+      <div class="col c1">
+        <div class="h">一 · 国内升学</div>
+        <div class="tag">资源竞争 · 中国</div>
+        <div class="stat"><span class="n" style="font-size:76px;">1290万</span><span class="u">高考人数</span></div>
+        <div class="stat"><span class="n">36.5%</span><span class="u">本科录取率</span></div>
+        <div class="stat"><span class="n">1270万</span><span class="u">高校毕业生</span></div>
+        <div class="foot">总量录取率在升，但优质本科与热门专业仍稀缺。</div>
+      </div>
+      <div class="col c2">
+        <div class="h">二 · 国际升学</div>
+        <div class="tag">顶尖名额 · 全球</div>
+        <div class="stat"><span class="n" style="font-size:76px;">850–900万</span><span class="u" style="font-size:20px;">2030国际学生</span></div>
+        <div class="stat"><span class="n">1.5–3%</span><span class="u">顶级校录取率</span></div>
+        <div class="stat"><span class="n">1.5–2%</span><span class="u">中国申请人</span></div>
+        <div class="foot">全球增长，但顶尖名额极度稀缺，中国申请人竞争尤烈。</div>
+      </div>
+      <div class="col c3">
+        <div class="h">三 · 就业技能</div>
+        <div class="tag">2030年代劳动市场</div>
+        <div class="stat"><span class="n" style="font-size:76px;">+7800万</span><span class="u">净增岗位</span></div>
+        <div class="stat"><span class="n">39%</span><span class="u">核心技能将变</span></div>
+        <div class="stat"><span class="n">17.9%</span><span class="u">青年失业率</span></div>
+        <div class="foot">总量净增，但技能迭代快，竞争转向持续适配能力。</div>
+      </div>
+    </div>
+    <div class="page-no">2 / 7</div>
+    <div class="connector"></div>
+  </section>
+
+  <!-- ============ 3 一 国内升学 ============ -->
+  <section class="slide">
+    <div class="head">
+      <span class="sec-no">01</span>
+      <h2>国内升学 · 资源竞争</h2>
+      <span class="sub-zh">数据：教育部 · 国家统计局</span>
+    </div>
+    <div class="grid">
+      <div class="bigstat acc">
+        <div class="lab">高考报名人数 · 规模仍巨</div>
+        <div class="num-row"><span class="num">1290<b style="font-size:60px;">万</b></span><span class="unit" style="color:var(--ink-3);">≈ 2026年，比25年减45万</span></div>
+        <div class="note">连续第二年下降 · 2024年峰值约1342万 · 但仍是超级大盘</div>
+      </div>
+      <div class="bigstat acc">
+        <div class="lab">普通本科（四年制）录取率</div>
+        <div class="num-row"><span class="num">36.5%</span></div>
+        <div class="note">总录取率约80%↑，但“优质本科”只约1/3 · 稀缺依旧</div>
+      </div>
+      <div class="bigstat acc">
+        <div class="lab">高校毕业生规模 · 历史新高</div>
+        <div class="num-row"><span class="num">1270<b style="font-size:60px;">万</b></span><span class="unit" style="color:var(--ink-3);">≈ 2026年，+48万</span></div>
+        <div class="note">多年连续增长 · 未来十年仍将高位运行</div>
+      </div>
+      <div class="bigstat red">
+        <div class="lab">青年失业率 16–24岁 · 毕业季冲高</div>
+        <div class="num-row"><span class="num">17.9%</span><span class="unit" style="color:var(--ink-3);">2026年7月</span></div>
+        <div class="note">6月为14.9% · 夏季毕业季显著上行</div>
+      </div>
+      <div class="takeaway">
+        <div class="t">含义：<b>总量录取率提升，但优质本科与热门专业竞争仍激烈</b>；毕业生规模持续高位，就业压力传导明显。</div>
+      </div>
+    </div>
+    <div class="page-no">3 / 7</div>
+    <div class="connector"></div>
+  </section>
+
+  <!-- ============ 4 一 国内补充 + 二 国际升学 ============ -->
+  <section class="slide">
+    <div class="head">
+      <span class="sec-no">02</span>
+      <h2>国际升学 · 顶尖名额之争</h2>
+      <span class="sub-zh">高净值家庭更相关 · 数据：UNESCO · QS</span>
+    </div>
+    <div class="grid">
+      <div class="list-stat">
+        <h3><span class="sw"></span>全球国际学生规模 · 持续扩张</h3>
+        <div class="row"><span class="k">当前规模</span><span class="kv acc">690–730<span style="font-size:26px;">万</span></span></div>
+        <div class="row"><span class="k">预计 2030（UNESCO预测约900万）</span><span class="kv acc">850–900<span style="font-size:26px;">万</span></span></div>
+        <div class="row"><span class="k">年均增速</span><span class="kv">≈4%</span></div>
+        <div class="row"><span class="k">全球高教总入学</span><span class="kv acc">2.6亿+</span></div>
+      </div>
+      <div class="bigstat ac2 alt">
+        <div class="lab">美国 Top 25 整体录取率 · 估算2030</div>
+        <div class="num-row"><span class="num">2.8–3.2%</span></div>
+        <div class="note">MIT 2.8% · 斯坦福 2.9% · 哈佛 3.0% · 普林斯顿 3.2%</div>
+      </div>
+      <div class="bigstat red">
+        <div class="lab">中国申请人 · 顶尖校录取率更低</div>
+        <div class="num-row"><span class="num">1.5–2%</span></div>
+        <div class="note">MIT≈1.5% · 斯坦福≈1.8% · 哈佛≈1.7% · 国际生占班级11–16%（NYU可达27%）</div>
+      </div>
+      <div class="bigstat acc">
+        <div class="lab">四大目的地份额（英美加澳）</div>
+        <div class="num-row"><span class="num">≈40% → 35%</span></div>
+        <div class="note">到2030 · 亚洲与欧洲新兴目的地吸引力上升 · 中国仍最大生源国之一但增速放缓</div>
+      </div>
+      <div class="takeaway blue">
+        <div class="t">含义：<b>全球国际学生持续增长，但顶尖学校名额极度稀缺，中国申请人竞争尤其激烈</b>。高净值家庭的真正竞争是“全球顶尖 + 多路径匹配”，而非单纯国内名校。</div>
+      </div>
+    </div>
+    <div class="page-no">4 / 7</div>
+    <div class="connector"></div>
+  </section>
+
+  <!-- ============ 5 三 就业与技能竞争 ============ -->
+  <section class="slide">
+    <div class="head">
+      <span class="sec-no">03</span>
+      <h2>就业 · 技能竞争</h2>
+      <span class="sub-zh">2030年代 · 数据：WEF《Future of Jobs 2025》</span>
+    </div>
+    <div class="grid">
+      <div class="bigstat grn">
+        <div class="lab">全球岗位净增 · 到2030</div>
+        <div class="num-row"><span class="num">+7800<span style="font-size:44px;">万</span></span></div>
+        <div class="note">新增1.7亿 − 替代9200万 ≈ 净增7800万（相当于就业的7%净增长）</div>
+      </div>
+      <div class="bigstat acc">
+        <div class="lab">现有岗位 · 结构性变革</div>
+        <div class="num-row"><span class="num">≈22%</span></div>
+        <div class="note">约1/5现有岗位将发生结构性重置</div>
+      </div>
+      <div class="bigstat red">
+        <div class="lab">核心技能 · 到2030将变化</div>
+        <div class="num-row"><span class="num">39%</span></div>
+        <div class="note">以100人为例：约59人需再培训/提升，其中约11人或无法获得 → 超1.2亿工人面临中期风险</div>
+      </div>
+      <div class="bigstat acc">
+        <div class="lab">增长最快技能 · 竞争锚点</div>
+        <div class="num-row" style="flex-direction:column;align-items:flex-start;gap:10px;">
+          <div style="font-size:30px;font-weight:600;color:var(--ink);">AI与大数据 · 网络安全 · 技术素养</div>
+          <div style="font-size:24px;color:var(--ink-2);">底层叠加：创造力 · 韧性 · 灵活 · 终身学习</div>
+        </div>
+      </div>
+      <div class="takeaway blue">
+        <div class="t">含义：<b>就业总量有净增长，但技能迭代快，竞争从“有没有学历”转向“能否持续适配变化”</b>。高净值孩子更可能进入高技能全球流动岗位 → 分析·创造·适应·跨文化，比短期证书更关键。</div>
+      </div>
+    </div>
+    <div class="page-no">5 / 7</div>
+    <div class="connector"></div>
+  </section>
+
+  <!-- ============ 6 四 综合结论表 ============ -->
+  <section class="slide">
+    <div class="kicker">综合解读 · 给家长的结论</div>
+    <h1 class="title">竞争维度速览</h1>
+    <div class="concl">
+      <table class="concl-tbl">
+        <thead>
+          <tr>
+            <th style="width:22%;">竞争维度</th>
+            <th style="width:34%;">关键数字</th>
+            <th>对10–15岁孩子的启示</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="dim">国内升学<span class="pill">中国</span></td>
+            <td><span class="digits">1290万</span> 高考 · <span class="digits">36.5%</span> 本科录取 · <span class="digits">1270万</span> 毕业生</td>
+            <td class="insight">优质本科仍稀缺，<b>但路径可多元化</b></td>
+          </tr>
+          <tr>
+            <td class="dim">国际顶尖录取<span class="pill">全球</span></td>
+            <td><span class="digits blue">1.5–3%</span> 顶级校录取 · 国际生增至 <span class="digits blue">850–900万</span></td>
+            <td class="insight">名额极度有限，<b>需长期真实差异化</b></td>
+          </tr>
+          <tr>
+            <td class="dim">就业结构<span class="pill">2030</span></td>
+            <td><span class="digits grn">+7800万</span> 净增岗位 · <span class="digits red">39%</span> 技能变化 · <span class="digits red">59%</span> 需再培训</td>
+            <td class="insight"><b>终身学习与适应力</b>是核心护城河</td>
+          </tr>
+          <tr>
+            <td class="dim">青年就业压力<span class="pill">中国</span></td>
+            <td><span class="digits red">17.9%</span> 高峰失业率（16–24岁）</td>
+            <td class="insight">到2030年代真正面对，<b>提前打底能力</b></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="takeaway" style="margin-top:34px;">
+        <div class="t">资源竞争不会消失，但形式在变——从单纯“卷分数/卷简历”转向<b>全球视野下的能力匹配与长期适应力</b>。高净值家庭的优势在于可布局多路径（国内优质 + 国际、多国家/课程），风险在于<b>过度同质化包装</b>。</div>
+      </div>
+    </div>
+    <div class="page-no">6 / 7</div>
+    <div class="connector"></div>
+  </section>
+
+  <!-- ============ 7 尾页 核心启示 ============ -->
+  <section class="slide end">
+    <div class="kicker">核心启示</div>
+    <h2>竞争不会消失，<br />但<span class="em">赛道在变</span></h2>
+    <div class="three">
+      <div class="it">
+        <div class="num">01</div>
+        <p>从“卷分数 / 卷简历”<br />转向能力匹配与长期适应力</p>
+      </div>
+      <div class="it">
+        <div class="num">02</div>
+        <p>价值在于多路径布局：<br />国内优质 + 国际，多国家多课程</p>
+      </div>
+      <div class="it">
+        <div class="num">03</div>
+        <p>真正风险：<br />过度同质化包装，而非竞争本身</p>
+      </div>
+    </div>
+    <div class="page-no">7 / 7</div>
+    <div class="connector"></div>
+  </section>
+
+</div>
+
+<div class="hint" id="hint">← → 翻页  ·  F 全屏  ·  S 进度</div>
+
+<script>
+(function(){
+  const deck = document.getElementById('deck');
+  const slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  const bar = document.getElementById('bar');
+  const total = slides.length;
+  let cur = 0;
+
+  function scale(){
+    const s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
+    deck.style.transform = 'scale('+s+')';
+  }
+  window.addEventListener('resize', scale);
+
+  function show(i){
+    cur = Math.max(0, Math.min(total-1, i));
+    slides.forEach((sl,idx)=>sl.classList.toggle('active', idx===cur));
+    bar.style.width = ((cur+1)/total*100)+'%';
+    try{ localStorage.setItem('gev_slide', cur); }catch(e){}
+  }
+
+  document.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); show(cur+1); }
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); show(cur-1); }
+    else if(e.key==='Home'){ show(0); }
+    else if(e.key==='End'){ show(total-1); }
+    else if(e.key==='f'||e.key==='F'){
+      if(!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{});
+      else document.exitFullscreen().catch(()=>{});
+    }
+  });
+
+  // 恢复上次位置 + 初始化
+  let start=0;
+  try{ start = parseInt(localStorage.getItem('gev_slide'))||0; }catch(e){}
+  scale(); show(start);
+})();
+</script>
+</body>
+</html>
